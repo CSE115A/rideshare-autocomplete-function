@@ -1,13 +1,15 @@
 module.exports = {
-  "parserOptions": {
+  parserOptions: {
     // Required for certain syntax usages
-    "ecmaVersion": 2017
+    ecmaVersion: 2017,
   },
-  "plugins": [
-    "promise", "prettier", "jest"
+  plugins: ["promise", "prettier", "jest"],
+  extends: [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended",
   ],
-  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:jest/recommended"],
-  "rules": {
+  rules: {
     "prettier/prettier": "error",
 
     "no-unused-vars": [
@@ -33,7 +35,7 @@ module.exports = {
 
     // Require the use of === and !==
     eqeqeq: 2,
-    
+
     // Require using Error objects as Promise rejection reasons
     "prefer-promise-reject-errors": 2,
 
@@ -55,5 +57,5 @@ module.exports = {
 
     // Warn against nested then() or catch() statements
     "promise/no-nesting": 1,
-  }
-}
+  },
+};
