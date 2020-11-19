@@ -3,8 +3,7 @@ const { getPredictions } = require("./middleware/google");
 const { authenticateToken } = require("./middleware/middleware");
 
 exports.autocomplete = functions.https.onRequest(async (request, response) => {
-  const { query } = request;
-  const { headers } = request;
+  const { query, headers } = request;
   if (Object.keys(query).length === 0 || query.input === "") {
     return response.status(400).send({
       error: true,
