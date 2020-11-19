@@ -1,10 +1,11 @@
-const { Client } = require("@googlemaps/google-maps-services-js");
-const client = new Client({});
+const axios = require("axios");
 
 exports.getPredictions = async ({ functions, input }) => {
   const apiKey = functions.config().autocomplete.apikey;
-  return await client
-    .placeAutocomplete({
+  const endpoint = functions.config().autocomplete.endpoint;
+
+  return await axios
+    .get(endpoint, {
       params: { input: input, key: apiKey },
     })
     .then((res) => {
