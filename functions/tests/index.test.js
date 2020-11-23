@@ -11,6 +11,13 @@ describe("autocomplete Testing Suite", () => {
     jest.resetAllMocks();
   });
 
+  describe("when sending preflight request", () => {
+    it("returns 200 with empty body", async () => {
+      const res = await autocomplete({ method: "OPTIONS" }, response);
+      expect(res.statusCode).toEqual(200);
+    });
+  });
+
   describe("when correct params and authentication are present", () => {
     it("returns 200 with body", async () => {
       const request = {
@@ -73,6 +80,11 @@ describe("autocomplete Testing Suite", () => {
   describe("when sending incorrect params", () => {
     const request = { query: { input: "" }, headers: {} };
     it("returns a 400 response", async () => {
+      authenticateToken.mockImplementationOnce(() => {
+        return {
+          isAuthError: false,
+        };
+      });
       const res = await autocomplete(request, response);
       expect(res.statusCode).toEqual(400);
       expect(res.body.error).toBeTruthy();
