@@ -22,6 +22,7 @@ const response = {
     };
     return response;
   },
+  set: () => {},
 };
 
 module.exports = {
